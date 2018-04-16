@@ -24,6 +24,46 @@ public class MemberController {
         mr.addEntry(oneEntry);    	
     }
 
+    public int addEntry(String type, String value, String id) throws Exception {
+        boolean isValueValid = this.validateValue(value);
+        boolean isIDValid = this.validateID(id);
+        boolean isTypeValid = this.validateType(type);
+
+        if (isValueValid && isIDValid && isTypeValid) {
+            Entry newEntry = new Entry(type, Integer.parseInt(value), Integer.parseInt(id));
+            mr.addEntry(newEntry);
+
+            return 1;
+        }
+
+        return 0;
+    }
+
+    public boolean validateValue(String value) throws Exception {
+        try {
+            Integer.parseInt(value);
+        } catch (NumberFormatException exception) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean validateID(String id) throws Exception {
+        try {
+            Integer.parseInt(id);
+        } catch (NumberFormatException exception) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean validateType(String type) {
+        return !type.isEmpty();
+    }
+
+
 //    public List<Entry> getEntriesForMember(Integer id){
 //        return this.mr.getAllEntries().stream().filter((e)->{
 //            return e.getIdMember() == id;
