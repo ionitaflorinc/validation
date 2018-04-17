@@ -4,6 +4,7 @@ import model.Entry;
 import model.Member;
 import repository.MemberRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MemberController {
@@ -69,6 +70,18 @@ public class MemberController {
 //            return e.getIdMember() == id;
 //        }).collect(Collectors.toList());
 //    }
+
+    public List<Entry> getEntriesForMember(Integer id) {
+        ArrayList<Entry> entries = new ArrayList<Entry>();
+
+        for (Entry entry: mr.getAllEntries()) {
+            if (entry.getIdMember() == id) {
+                entries.add(entry);
+            }
+        }
+
+        return entries;
+    }
 
      public List<Entry> allEntries() {
         return mr.getAllEntries();

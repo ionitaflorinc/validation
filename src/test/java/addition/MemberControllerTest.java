@@ -7,10 +7,6 @@ import repository.MemberRepository;
 
 import java.util.List;
 
-/**
- * Created by dariusi on 3/13/18.
- */
-
 public class MemberControllerTest {
     @org.junit.Test
     public void addMember() throws Exception {
